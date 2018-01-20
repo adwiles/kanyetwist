@@ -1,0 +1,121 @@
+.controls {
+	  height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-family: Courier New, Courier, monospace;
+    color: #DE5157;
+	  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.control-bar {
+	width: 65%;
+	height: 50px;
+	position: absolute;
+	top: 0;
+  right: 0;
+	display: flex;
+  padding: 10px;
+}
+
+.controls .title {
+  position: absolute;
+  top: 0;
+  width: 30%;
+  padding: 10px;
+}
+
+.controls h1 {
+  margin: 0;
+  font-size: 25px;
+  font-variant: small-caps;
+  text-align: right;
+  line-height: 50px;
+}
+
+.option {
+	height: 100%;
+	width: 42%;
+  max-width: 250px;
+	display: flex;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #DE5157;
+  margin: 0 10px;
+  color: #DE5157;
+}
+
+.option h3 {
+	width: 50%;
+	height: 100%;
+  margin: 0;
+  text-align: center;
+  line-height: 50px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.option h3:hover {
+	cursor: default;
+}
+
+.option span {
+	width: 25%;
+	height: 100%;
+	text-align: center;
+	line-height: 50px;
+}
+
+.option span:hover {
+	cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.pressed {
+  background: rgba(255, 255, 255, 0.6) !important;
+}
+
+
+@media screen and (max-width: 600px) {
+  .control-bar {
+    height: 40px;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+  }
+
+  .title {
+    width: 100% !important;
+    padding: 10px 0 !important;
+  }
+
+  .title h1 {
+    text-align: center;
+  }
+
+  .control-bar {
+    width: 95%;
+    padding: 15px 10px;
+  }
+
+  .option {
+    margin: auto;
+  }
+  .option h3 {
+    margin: auto; 
+    line-height: 40px;
+    font-size: 11px;
+  }
+
+  .option span {
+	  line-height: 40px;
+  }
+
+  .option span:hover {
+    background: rgba(255, 255, 255, 0);
+  }
+}

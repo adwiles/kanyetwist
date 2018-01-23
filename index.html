@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="icon "href="favicon.ico" type="icon">
     <link rel="stylesheet" href="styles/controls.css">
+    <script type="text/javascript" src="sketch/loadTextures.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
+    <script src="sketch/bundle.js" type="text/javascript"></script>
 <style>
 html, body {
   height: 100%;
@@ -18,7 +21,7 @@ html:active, body:active {
 </style>
   </head>
   <body>
-    <div id="container"></div>
+    <div class="texture" id="container"></div>
     <div class="controls">
       <div class="title"><h1>kanyetwist</h1></div>
       <div class="control-bar">
@@ -34,6 +37,5 @@ html:active, body:active {
         </div>
       </div>
     </div>
-    <script src="sketch/bundle.js" type="text/javascript"></script>
   </body>
 </html>

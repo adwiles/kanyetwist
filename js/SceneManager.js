@@ -1,14 +1,13 @@
-import { Scene, PerspectiveCamera, Vector3, Vector2, 
-         WebGLRenderer, TextureLoader, Raycaster, RingGeometry, DoubleSide, MeshBasicMaterial, Mesh } from 'three';
 import Kanye from './Kanye.js';
 
 class SceneManager {
-  constructor(isMobile) {
+  constructor(isMobile, textures) {
     this.screenDimensions = {
       width: window.innerWidth,
       height: window.innerHeight 
     };
 
+    this.textures = textures;
     this.speed = (this.isMobile) ? 0.4 : 0.3;
     this.scene = this.buildScene();
     this.camera = this.buildCamera(this.screenDimensions);
@@ -20,29 +19,28 @@ class SceneManager {
   set speed(speed) { this._speed = speed; }
 
   addKanye(change) {
-    let loader = new TextureLoader();
     for (let i = 0; i < change; i++) {
-      let n = Math.ceil(Math.random() * 3);
-      let texture = loader.load('./textures/kanye' + n + '.png');
+      let n = Math.floor(Math.random() * 3);
+      let texture = this.textures[n];
       let newk = new Kanye(this.scene, this.sceneSubjects.length, texture, this.speed, this.isMobile);
       this.sceneSubjects.push(newk);
     }
   }
 
   buildScene() {
-    let s = new Scene();
+    let s = new THREE.Scene();
     return s;
   }
 
   buildCamera({width, height}) {
-    let c = new PerspectiveCamera(75, width / height, 0.1, 280);
+    let c = new THREE.PerspectiveCamera(75, width / height, 0.1, 280);
     c.position.set(0, 0, 150);
-    c.lookAt(new Vector3(0, 0, 0));
+    c.lookAt(new THREE.Vector3(0, 0, 0));
     return c;
   }
 
   buildRenderer({width, height}) {
-    let r = new WebGLRenderer();
+    let r = new THREE.WebGLRenderer();
     r.setSize(width, height);
     this.canvas = r.domElement;
     document.getElementById('container').appendChild(this.canvas);
@@ -52,10 +50,10 @@ class SceneManager {
   createSceneSubjects(scene) {
     const sceneSubjects = [];
 
-    let loader = new TextureLoader();
+    // let loader = new THREE.TextureLoader();
     for (let i = 0; i < 50; i++) {
-      let n = Math.ceil(Math.random() * 3);
-      let texture = loader.load('./textures/kanye' + n + '.png');
+      let n = Math.floor(Math.random() * 3);
+      let texture = this.textures[n];
       let newk = new Kanye(scene, i, texture, this.speed, this.isMobile);
       sceneSubjects.push(newk);
     }
@@ -89,8 +87,8 @@ class SceneManager {
   }
 
   click(x, y) {
-    let mouse = new Vector2(x, y);
-    let raycaster = new Raycaster();
+    let mouse = new THREE.Vector2(x, y);
+    let raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(mouse, this.camera); // build ray from mouse & camera
 
     let intersects = raycaster.intersectObjects(this.scene.children);
@@ -106,9 +104,9 @@ class SceneManager {
     this.render();
   }
 
-	resizeWindow(width, height) {
-		this.screenDimensions.width  = width;
-		this.screenDimensions.height = height;
+  resizeWindow(width, height) {
+    this.screenDimensions.width  = width;
+    this.screenDimensions.height = height;
 
     this.canvas.width = this.screenDimensions.width;
     this.canvas.height = this.screenDimensions.height;
@@ -117,9 +115,10 @@ class SceneManager {
                           this.screenDimensions.height);
     this.camera.updateProjectionMatrix();
 
-    this.renderer.setSize(this.screenDimensions.width, 
-                          this.screenDimensions.height);
-	}
+    this.renderer.setSize(
+      this.screenDimensions.width, 
+      this.screenDimensions.height);
+  }
 
   render() { this.renderer.render(this.scene, this.camera); }
 }

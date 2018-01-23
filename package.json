@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack -p",
     "watch": "webpack --watch",
-    "clean": "rm -rf sketch/"
+    "clean": "rm -rf sketch/",
+    "lint": "./node_modules/.bin/eslint js/*.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +16,9 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
+    "eslint": "^4.16.0",
     "three": "^0.89.0",
+    "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^3.10.0"
   }
 }

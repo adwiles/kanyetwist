@@ -1,4 +1,6 @@
 var path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
 
 module.exports = {
   entry: './js/main.js',
@@ -12,5 +14,8 @@ module.exports = {
         query: { presets: ['es2015'] }
       }]
   },
+  plugins: [
+    new UglifyJsPlugin()
+  ],
   stats: { colors: true },
 }
